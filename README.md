@@ -48,3 +48,6 @@ This can be used in the version management of any project or software in c++. Yo
         "%d" + m_delimiter ; 
     std::sscanf(string_version.c_str(),format.c_str(),&m_major,&m_minor,&m_revision,&m_build);
 ```
+
+### Example and Test
+Check out test and example in /test.
