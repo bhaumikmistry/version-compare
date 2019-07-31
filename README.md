@@ -50,4 +50,4 @@ This can be used in the version management of any project or software in c++. Yo
 ```
 
 ### Example and Test
-Check out test and example in /test.
+Check out test and example in /test/test.cpp
