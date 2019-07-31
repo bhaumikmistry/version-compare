@@ -29,26 +29,11 @@ struct version
     version(std::string string_version,std::string delimiter="."):
     m_delimiter(delimiter)
     {
-        char * pch;
-        pch = strtok(const_cast<char*>(string_version.c_str()),m_delimiter.c_str());
-        std::vector<std::string> data;
-        while(pch != NULL)
-        {
-           data.push_back(std::string(pch));
-           pch = strtok(NULL,m_delimiter.c_str());
-        }
-
-        m_major=std::stoi(data[0]);
-        m_minor=std::stoi(data[1]);
-        m_revision=std::stoi(data[2]);
-        m_build=std::stoi(data[3]);
-
-        // std::string format = "%d" + m_delimiter + 
-        //     "%d" + m_delimiter + 
-        //     "%d" + m_delimiter + 
-        //     "%d" + m_delimiter ; 
-        // std::sscanf(string_version.c_str(),format.c_str(),&m_major,&m_minor,&m_revision,&m_build);
-
+        std::string format = "%d" + m_delimiter + 
+            "%d" + m_delimiter + 
+            "%d" + m_delimiter + 
+            "%d" + m_delimiter ; 
+        std::sscanf(string_version.c_str(),format.c_str(),&m_major,&m_minor,&m_revision,&m_build);
     }
 
     std::string operator()()
@@ -93,7 +78,7 @@ struct version
 
     bool operator<=(const version& to_check)
     {
-        return operator>(to_check);
+        return !operator>(to_check);
     }
 
     bool operator==(const version& to_check)
@@ -119,33 +104,8 @@ struct version
 
 };
 
-int main(int args, char ** arg)
-{
-    std::cout << "main()" << std::endl;
-    
-    version v(2,3,4,5);
-    std::string ver = v();
-    std::cout << ver << std::endl;
-
-    version v1("4.1.6.2",".");
-    std::string ver1 = v1();
-    std::cout << ver1 << std::endl;
-
-    std::cout<< ((v1>v)? "true":"false") << std::endl;
-
-    version v2(2,3,4,5);
-    version v3("2.3.4.6",".");
-    std::cout<< ((v2<v3)? "true":"false") << std::endl;
-
-    version v4(2,3,4,4);
-    version v5("2.3.4.5",".");
-    std::cout<< ((v4==v5)? "true":"false") << std::endl;
-
-    version v6(2,3,4,5);
-    v6.increment(false,false,true,true);
-    ver = v6();
-    std::cout << ver << std::endl;
-
-
-    return 0;
-}
+// int main(int args, char ** arg)
+// {
+   
+//     return 0;
+// }
